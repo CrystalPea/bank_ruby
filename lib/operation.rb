@@ -1,9 +1,10 @@
 class Operation
-  attr_reader :date, :amount, :type
+  attr_reader :date, :amount, :type, :balance
 
-  def initialize(amount, type)
+  def initialize(amount, type, balance)
     @date = Date.today
     @amount = amount
-    @type = :credit
+    @type = type
+    @balance = balance
   end
 end
