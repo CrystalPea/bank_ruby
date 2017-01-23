@@ -5,4 +5,8 @@ class BankStatement
     @history = []
   end
 
+  def add_operation(operation)
+    self.history << operation
+  end
+
 end
