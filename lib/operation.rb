@@ -1,7 +1,8 @@
 class Operation
-  attr_reader :date
+  attr_reader :date, :debit
 
-  def initialize
-    @date = Date.today 
+  def initialize(debit=nil)
+    @date = Date.today
+    @debit = debit
   end
 end
