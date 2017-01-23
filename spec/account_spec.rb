@@ -39,6 +39,13 @@ describe Account do
     end
   end
 
-
+  context "checking bank statement" do
+    describe "#show_bank_statement" do
+      it "prints history of operations to screen" do
+      expect(bank_statement).to receive(:print_statement)
+      account.show_bank_statement
+      end
+    end
+  end
 
 end

@@ -1,4 +1,5 @@
 require_relative "operation"
+require_relative "bank_statement"
 
 class Account
   attr_reader :balance, :bank_statement
@@ -31,6 +32,10 @@ class Account
 
   def see_history
     bank_statement.history
+  end
+
+  def show_bank_statement
+    bank_statement.print_statement
   end
 
   private
