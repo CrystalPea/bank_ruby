@@ -35,6 +35,10 @@ class Bank
     bank_statement.history
   end
 
+  def show_bank_statement
+    bank_statement.print_statement
+  end
+
   private
   attr_writer :account, :operation_klass, :bank_statement
 end
