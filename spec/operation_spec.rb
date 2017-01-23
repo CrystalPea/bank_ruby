@@ -1,7 +1,7 @@
 require 'operation'
 
 describe Operation do
-  subject(:operation) { described_class.new(1000, :credit, 2000) }
+  subject(:operation) { described_class.new({amount: 1000, type: :credit, balance: 2000}) }
   it { is_expected.to respond_to :date }
 
   it "is initialized with current date" do
