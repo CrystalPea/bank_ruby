@@ -1,6 +1,6 @@
 require 'date'
 
-class Operation
+class Transaction
   attr_reader :date, :amount, :type, :balance
 
   def initialize(hash)

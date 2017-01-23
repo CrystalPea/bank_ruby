@@ -1,4 +1,4 @@
-require_relative "operation"
+require_relative "transaction"
 
 class BankStatement
   attr_reader :history
@@ -7,14 +7,14 @@ class BankStatement
     @history = []
   end
 
-  def add_operation(operation)
-    self.history << operation
+  def add_transaction(transaction)
+    self.history << transaction
   end
 
   def prepare_statement
     statement = "date       || credit || debit  || balance\n"
-    history.reverse.each do |operation|
-      statement += "#{operation.date.strftime("%d/%m/%Y")} || #{operation.type == :credit ? operation.amount : "      "}|| #{operation.type == :debit ? operation.amount : "     "} || #{operation.balance}\n"
+    history.reverse.each do |transaction|
+      statement += "#{transaction.date.strftime("%d/%m/%Y")} || #{transaction.type == :credit ? transaction.amount : "      "}|| #{transaction.type == :debit ? transaction.amount : "     "} || #{transaction.balance}\n"
     end
     statement
   end

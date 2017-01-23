@@ -1,49 +1,49 @@
 require 'bank'
 
 describe Bank do
-  let(:operation_klass) { double :operation_klass }
+  let(:transaction_klass) { double :transaction_klass }
   let(:bank_statement) { double :bank_statement, history: [] }
   let(:account) { double :account, balance: 0 }
-  subject(:bank) { described_class.new({operation_klass: operation_klass, bank_statement: bank_statement, account: account}) }
-  let(:deposit_operation) { double :deposit_operation }
-  let(:withdrawal_operation) { double :withdrawal_operation }
+  subject(:bank) { described_class.new({transaction_klass: transaction_klass, bank_statement: bank_statement, account: account}) }
+  let(:deposit_transaction) { double :deposit_transaction }
+  let(:withdrawal_transaction) { double :withdrawal_transaction }
 
 
   context "making deposits and withdrawals" do
     describe "#make_deposit" do
       it "lets user deposit money" do
         expect(account).to receive(:make_deposit).with(1000)
-        allow(bank).to receive(:create_operation).with(1000, :credit) { bank.register_operation(deposit_operation) }
+        allow(bank).to receive(:create_transaction).with(1000, :credit) { bank.register_transaction(deposit_transaction) }
         bank.make_deposit(1000)
       end
 
-      it "registers deposit in operation history" do
+      it "registers deposit in transaction history" do
         allow(account).to receive(:make_deposit).with(1000)
-        allow(bank).to receive(:create_operation).with(1000, :credit) { bank.register_operation(deposit_operation) }
+        allow(bank).to receive(:create_transaction).with(1000, :credit) { bank.register_transaction(deposit_transaction) }
         bank.make_deposit(1000)
-        expect(bank.see_history).to eq [deposit_operation]
+        expect(bank.see_history).to eq [deposit_transaction]
       end
     end
 
     describe "#make_withdrawal" do
       it "lets user withdraw money" do
         expect(account).to receive(:make_withdrawal).with(300)
-        allow(bank).to receive(:create_operation).with(300, :debit) { bank.register_operation(withdrawal_operation) }
+        allow(bank).to receive(:create_transaction).with(300, :debit) { bank.register_transaction(withdrawal_transaction) }
         bank.make_withdrawal(300)
       end
 
-      it "registers withdrawal in operation history" do
+      it "registers withdrawal in transaction history" do
         allow(account).to receive(:make_withdrawal).with(300)
-        allow(bank).to receive(:create_operation).with(300, :debit) { bank.register_operation(withdrawal_operation) }
+        allow(bank).to receive(:create_transaction).with(300, :debit) { bank.register_transaction(withdrawal_transaction) }
         bank.make_withdrawal(300)
-        expect(bank.see_history).to eq [withdrawal_operation]
+        expect(bank.see_history).to eq [withdrawal_transaction]
       end
     end
   end
 
   context "checking bank account statement" do
     describe "#show_bank_statement" do
-      it "prints history of operations to screen" do
+      it "prints history of transactions to screen" do
       expect(bank_statement).to receive(:print_statement)
       bank.show_bank_statement
       end

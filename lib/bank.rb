@@ -1,34 +1,34 @@
 require_relative "account"
-require_relative "operation"
+require_relative "transaction"
 require_relative "bank_statement"
 
 class Bank
 
-  attr_reader :account, :operation_klass, :bank_statement
+  attr_reader :account, :transaction_klass, :bank_statement
 
   def initialize(hash)
     @bank_statement = hash[:bank_statement]
-    @operation_klass = hash[:operation_klass]
+    @transaction_klass = hash[:transaction_klass]
     @account = hash[:account]
   end
 
   def make_deposit(amount)
     self.account.make_deposit(amount)
-    create_operation(amount, :credit)
+    create_transaction(amount, :credit)
   end
 
   def make_withdrawal(amount)
     self.account.make_withdrawal(amount)
-    create_operation(amount, :debit)
+    create_transaction(amount, :debit)
   end
 
-  def create_operation(amount, type)
-    operation = operation_klass.new({ amount: amount.to_f, type: type, balance: account.balance })
-    register_operation(operation)
+  def create_transaction(amount, type)
+    transaction = transaction_klass.new({ amount: amount.to_f, type: type, balance: account.balance })
+    register_transaction(transaction)
   end
 
-  def register_operation(operation)
-    self.bank_statement.history << operation
+  def register_transaction(transaction)
+    self.bank_statement.history << transaction
   end
 
   def see_history
@@ -40,5 +40,5 @@ class Bank
   end
 
   private
-  attr_writer :account, :operation_klass, :bank_statement
+  attr_writer :account, :transaction_klass, :bank_statement
 end

@@ -15,18 +15,18 @@ irb
 ```
 - then:
 
-```
+```ruby
 require "./lib/bank"
 ```
-```
+```ruby
 bank = Bank.new
 ```
-```
+```ruby
 bank.make_deposit(1000)
 ```
-```
+```ruby
 bank.make_withdrawal(300)
 ```
-```
+```ruby
 bank.show_bank_statement
 ```
