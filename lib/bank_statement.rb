@@ -8,10 +8,10 @@ class BankStatement
   def prepare_statement(history)
     statement = TITLE
     history.reverse.each do |transaction|
-      date = (transaction.date.strftime("%d/%m/%Y") + ' ' * LENGTH )[0, LENGTH]
-      credit = (transaction.type == :credit ? ((transaction.amount.to_s) + ' ' * LENGTH )[0, LENGTH] : ' '*LENGTH)
-      debit = (transaction.type == :debit ? ((transaction.amount.to_s) + ' ' * LENGTH )[0, LENGTH] : ' '*LENGTH)
-      balance = (transaction.balance.to_s + ' ' * LENGTH )[0, LENGTH]
+      date = format_cell(transaction.date.strftime("%d/%m/%Y"))
+      credit = transaction.type == :credit ? format_cell(transaction.amount.to_s) : format_cell('')
+      debit = transaction.type == :debit ? format_cell(transaction.amount.to_s): format_cell('')
+      balance = format_cell(transaction.balance.to_s)
       statement += "#{date}||#{credit}||#{debit}||#{balance}\n"
     end
     statement
@@ -19,6 +19,11 @@ class BankStatement
 
   def print_statement(history)
     print prepare_statement(history)
+  end
+
+  private
+  def format_cell(string)
+    (string + ' ' * LENGTH )[0, LENGTH]
   end
 
 end
