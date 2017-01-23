@@ -2,7 +2,7 @@ require_relative "transaction"
 
 #holds transaction history and shows bank statement
 class BankStatement
-  TITLE = "date      ||  credit  ||  debit   || balance  \n"
+  TITLE = "   date   ||  credit  ||  debit   || balance  \n"
   LENGTH = 10
 
   def prepare_statement(history)
@@ -23,7 +23,7 @@ class BankStatement
 
   private
   def format_cell(string)
-    (string + ' ' * LENGTH )[0, LENGTH]
+    string.rjust(10)
   end
 
   def format_credit(transaction)
