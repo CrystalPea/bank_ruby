@@ -8,4 +8,6 @@ describe Bank do
     expect(bank.balance).to eq 1000
   end
 
+  it { is_expected.to respond_to(:make_withdrawal).with(1).argument }
+
 end

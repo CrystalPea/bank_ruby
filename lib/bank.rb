@@ -9,6 +9,10 @@ class Bank
     self.balance += amount
   end
 
+  def make_withdrawal(amount)
+    amount
+  end
+
   private
   attr_writer :balance
 
