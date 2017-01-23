@@ -2,7 +2,8 @@ require 'account'
 
 describe Account do
   let(:operation_klass) { double :operation_klass }
-  subject(:account) { described_class.new(:operation_klass) }
+  let(:bank_statement) { double :bank_statement, history: [] }
+  subject(:account) { described_class.new({operation_klass: operation_klass, bank_statement: bank_statement}) }
   let(:deposit_operation) { double :deposit_operation }
   let(:withdrawal_operation) { double :withdrawal_operation }
 
@@ -18,7 +19,7 @@ describe Account do
       end
 
       it "registers deposit in operation history" do
-        expect(account.history).to eq [deposit_operation]
+        expect(account.see_history).to eq [deposit_operation]
       end
     end
 
@@ -33,10 +34,11 @@ describe Account do
       end
 
       it "registers withdrawal in operation history" do
-        expect(account.history).to eq [deposit_operation, withdrawal_operation]
+        expect(account.see_history).to eq [deposit_operation, withdrawal_operation]
       end
-
     end
   end
+
+
 
 end
