@@ -2,11 +2,14 @@ class Bank
   attr_reader :balance
 
   def initialize
-    balance = 0
+    @balance = 0
   end
 
   def make_deposit(amount)
-    amount
+    self.balance += amount
   end
+
+  private
+  attr_writer :balance
 
 end
