@@ -10,7 +10,7 @@ class Bank
   end
 
   def make_withdrawal(amount)
-    amount
+    self.balance -= amount
   end
 
   private
