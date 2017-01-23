@@ -19,6 +19,4 @@ describe Operation do
   it "holds bank balance state" do
     expect(operation.balance).to eq 2000
   end
-
-
 end
