@@ -3,17 +3,25 @@ require 'bank'
 describe Bank do
   subject(:bank) { described_class.new }
 
-  it "adds deposit to the balance" do
-    bank.make_deposit(1000)
-    expect(bank.balance).to eq 1000
-  end
+  context "making deposits and withdrawals" do
+    before do
+      bank.make_deposit(1000)
+    end
+    
+    describe "#make_deposit" do
+      it "adds deposit to the balance" do
+        expect(bank.balance).to eq 1000
+      end
 
-  it { is_expected.to respond_to(:make_withdrawal).with(1).argument }
+    end
 
-  it "substracts deposit from the balance" do
-    bank.make_deposit(1000)
-    bank.make_withdrawal(300)
-    expect(bank.balance).to eq 700
+    describe "#make_withdrawal" do
+      it "substracts deposit from the balance" do
+        bank.make_withdrawal(300)
+        expect(bank.balance).to eq 700
+      end
+
+    end
   end
 
 end
