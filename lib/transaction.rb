@@ -1,5 +1,6 @@
 require 'date'
 
+#transaction history unit
 class Transaction
   attr_reader :date, :amount, :type, :balance
 

@@ -1,5 +1,7 @@
 require_relative "transaction"
 
+#holds transaction history and shows bank statement
+#I need to extract history to a separate class
 class BankStatement
   attr_reader :history
 

@@ -1,3 +1,5 @@
+#calculates the balance
+
 class Account
   attr_reader :balance
 

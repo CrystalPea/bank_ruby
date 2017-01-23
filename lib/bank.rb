@@ -2,6 +2,7 @@ require_relative "account"
 require_relative "transaction"
 require_relative "bank_statement"
 
+#interacts with the user
 class Bank
 
   attr_reader :account, :transaction_klass, :bank_statement
