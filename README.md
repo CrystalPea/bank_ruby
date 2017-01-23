@@ -27,11 +27,12 @@ require "./lib/bank"
 ```ruby
 bank = Bank.new({bank_statement: BankStatement.new, transaction_klass: Transaction, account: Account.new, transaction_history: TransactionHistory.new})
 ```
+- sample use:   
 ```ruby
-bank.make_deposit(1000)
+bank.make_deposit({pounds: 1000, pence: 0})
 ```
 ```ruby
-bank.make_withdrawal(300)
+bank.make_withdrawal({pounds: 1000, pence: 0})
 ```
 ```ruby
 bank.show_bank_statement
