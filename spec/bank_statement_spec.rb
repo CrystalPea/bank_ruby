@@ -8,6 +8,6 @@ describe BankStatement do
   let(:history) {[transaction, transaction_2]}
 
   it "prints transactions in reverse chronological order" do
-    expect{statement.print_statement(history)}.to output("date       || credit || debit  || balance\n23/01/2017 ||       || 300.0 || 700.0\n22/01/2017 || 1000.0||       || 1000.0\n").to_stdout
+    expect{statement.print_statement(history)}.to output("date      ||  credit  ||  debit   || balance  \n23/01/2017||          ||300.0     ||700.0     \n22/01/2017||1000.0    ||          ||1000.0    \n").to_stdout
   end
 end
