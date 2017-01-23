@@ -28,7 +28,8 @@ describe Account do
       end
 
       it "registers withdrawal in operation history" do
-        expect(account.history).to eq [{date: Date.today, credit: 1000.00, balance: 1000}, {date: Date.today, debit: 300.00, balance: 700}]
+        history = [{date: Date.today, credit: 1000.00, balance: 1000}, {date: Date.today, debit: 300.00, balance: 700}]
+        expect(account.history).to eq history
       end
 
     end
