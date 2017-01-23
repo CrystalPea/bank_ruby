@@ -1,3 +1,5 @@
+require 'date'
+
 class Operation
   attr_reader :date, :amount, :type, :balance
 

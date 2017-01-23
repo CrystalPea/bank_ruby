@@ -1,3 +1,5 @@
+require_relative "operation"
+
 class Account
   attr_reader :balance, :history
 
@@ -29,5 +31,6 @@ class Account
 
   private
   attr_writer :balance
+  attr_accessor :operation_klass
 
 end
