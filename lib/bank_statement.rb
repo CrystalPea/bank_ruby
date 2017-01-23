@@ -23,7 +23,7 @@ class BankStatement
 
   private
   def format_cell(string)
-    string.rjust(10)
+    string.rjust(LENGTH)
   end
 
   def format_credit(transaction)
