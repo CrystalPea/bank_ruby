@@ -16,13 +16,19 @@ describe Account do
       it "registers deposit in operation history" do
         expect(account.history).to eq [{date: Date.today, credit: 1000.00, balance: 1000}]
       end
-
     end
 
     describe "#make_withdrawal" do
-      it "substracts deposit from the balance" do
+      before do
         account.make_withdrawal(300)
+      end
+
+      it "substracts deposit from the balance" do
         expect(account.balance).to eq 700
+      end
+
+      it "registers withdrawal in operation history" do
+        expect(account.history).to eq [{date: Date.today, credit: 1000.00, balance: 1000}, {date: Date.today, debit: 300.00, balance: 700}]
       end
 
     end

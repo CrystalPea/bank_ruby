@@ -17,6 +17,7 @@ class Account
 
   def make_withdrawal(amount)
     self.balance -= amount
+    register_operation(amount, :debit)
   end
 
   private
