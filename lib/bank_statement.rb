@@ -9,9 +9,9 @@ class BankStatement
     statement = TITLE
     history.reverse.each do |transaction|
       date = format_cell(transaction.date.strftime("%d/%m/%Y"))
-      credit = transaction.type == :credit ? format_cell(transaction.amount.to_s) : format_cell('')
-      debit = transaction.type == :debit ? format_cell(transaction.amount.to_s): format_cell('')
-      balance = format_cell(transaction.balance.to_s)
+      credit = transaction.type == :credit ? format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}") : format_cell('')
+      debit = transaction.type == :debit ? format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}") : format_cell('')
+      balance = format_cell("#{transaction.balance[:pounds]}.#{'%02d' % transaction.balance[:pence]}")
       statement += "#{date}||#{credit}||#{debit}||#{balance}\n"
     end
     statement

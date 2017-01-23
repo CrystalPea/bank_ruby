@@ -26,7 +26,7 @@ class Bank
   end
 
   def create_transaction(amount, type)
-    transaction = transaction_klass.new({ amount: amount.to_f, type: type, balance: account.balance })
+    transaction = transaction_klass.new({ amount: amount, type: type, balance: account.balance })
     register_transaction(transaction)
   end
 
