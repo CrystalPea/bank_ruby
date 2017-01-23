@@ -9,9 +9,9 @@ class BankStatement
     statement = TITLE
     history.reverse.each do |transaction|
       date = format_cell(transaction.date.strftime("%d/%m/%Y"))
-      credit = transaction.type == :credit ? format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}") : format_cell('')
-      debit = transaction.type == :debit ? format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}") : format_cell('')
-      balance = format_cell("#{transaction.balance[:pounds]}.#{'%02d' % transaction.balance[:pence]}")
+      credit = format_credit(transaction)
+      debit = format_debit(transaction)
+      balance = format_balance(transaction)
       statement += "#{date}||#{credit}||#{debit}||#{balance}\n"
     end
     statement
@@ -24,6 +24,24 @@ class BankStatement
   private
   def format_cell(string)
     (string + ' ' * LENGTH )[0, LENGTH]
+  end
+
+  def format_credit(transaction)
+    if transaction.type == :credit
+      format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}")
+    else format_cell('')
+    end
+  end
+
+  def format_debit(transaction)
+    if transaction.type == :debit
+      format_cell("#{transaction.amount[:pounds]}.#{'%02d' % transaction.amount[:pence]}")
+    else format_cell('')
+    end
+  end
+
+  def format_balance(transaction)
+    format_cell("#{transaction.balance[:pounds]}.#{'%02d' % transaction.balance[:pence]}")
   end
 
 end
