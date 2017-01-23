@@ -8,7 +8,11 @@ class Account
 
   def make_deposit(amount)
     self.balance += amount
-    self.history << {date: Date.today, credit: amount.to_f, debit: nil, balance: balance }
+    register_operation(amount, :credit)
+  end
+
+  def register_operation(amount, type)
+    self.history << {date: Date.today, type => amount.to_f, balance: balance }
   end
 
   def make_withdrawal(amount)

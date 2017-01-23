@@ -14,7 +14,7 @@ describe Account do
       end
 
       it "registers deposit in operation history" do
-        expect(account.history).to eq [{date: Date.today, credit: 1000, debit: nil, balance: 1000}]
+        expect(account.history).to eq [{date: Date.today, credit: 1000.00, balance: 1000}]
       end
 
     end
