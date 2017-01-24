@@ -8,7 +8,7 @@ class BankStatement
   def prepare_statement(history)
     statement = TITLE
     history.reverse.each do |transaction|
-      date = format_cell(transaction.date.strftime("%d/%m/%Y"))
+      date = format_date(transaction)
       credit = format_credit(transaction)
       debit = format_debit(transaction)
       balance = format_balance(transaction)
@@ -24,6 +24,10 @@ class BankStatement
   private
   def format_cell(string)
     string.rjust(LENGTH)
+  end
+
+  def format_date(transaction)
+    format_cell(transaction.date.strftime("%d/%m/%Y"))
   end
 
   def format_credit(transaction)
